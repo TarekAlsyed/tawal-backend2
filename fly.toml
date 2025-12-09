@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for tawal-backend2 on 2025-12-09T14:17:11Z
+# fly.toml app configuration file generated for tawal-backend2-0s0-ea on 2025-12-09T14:28:57Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'tawal-backend2'
+app = 'tawal-backend2-0s0-ea'
 primary_region = 'fra'
 
 [build]
