@@ -174,7 +174,6 @@ function authenticateAdmin(req, res, next) {
 // ================= API ENDPOINTS =================
 
 // 🔥🔥🔥 NEW ENDPOINT: Public Stats (For Homepage) 🔥🔥🔥
-// هذا هو الكود الجديد الذي يسمح للصفحة الرئيسية بجلب الأرقام الحقيقية
 app.get('/api/public-stats', async (req, res) => {
     try {
         const s = await pool.query('SELECT COUNT(*) as t FROM students');
@@ -190,7 +189,17 @@ app.get('/api/public-stats', async (req, res) => {
         res.json({ totalStudents: 0, totalQuizzes: 0 });
     }
 });
-// 🔥🔥🔥 END NEW ENDPOINT 🔥🔥🔥
+
+// 🔥🔥🔥 NEW ENDPOINT: Public Student List (For Results Page) 🔥🔥🔥
+// هذا يسمح للصفحة الجديدة بعرض الطلاب دون الحاجة لتوكن أدمن معقد
+app.get('/api/students-list', async (req, res) => {
+    try {
+        const r = await pool.query('SELECT id, name, email FROM students ORDER BY createdAt DESC');
+        res.json(r.rows);
+    } catch (e) {
+        res.status(500).json([]);
+    }
+});
 
 // Admin Login
 app.post('/api/admin/login', async (req, res) => {
